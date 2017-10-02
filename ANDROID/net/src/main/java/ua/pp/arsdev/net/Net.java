@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 
 public class Net{
     public static final String USERNAME = "ТУТ ВАШ ЛОГИН", PASSWORD= "ТУТ ВАШ ПАРОЛЬ", ACCESS_TOKEN="ТУТ ВАШ ТОКЕН",USER_AGENT="ТУТ ВАШ ЮЗЕР АГЕНТ";
+    public static int MODE = 0;
     public static void main(String[] args) throws IOException{
         try{
             String ad = String.format(Locale.US, "https://oauth.vk.com/token?%s=password&%s=2274003&%s=hHbZxrka2uZ6jB1inYsH&username="+USERNAME+"&password="+PASSWORD + "&v=%s&%s=1", new Object[]{URLEncoder.encode("grant_type", "UTF-8"),URLEncoder.encode("client_id", "UTF-8"), URLEncoder.encode("client_secret", "UTF-8") ,URLEncoder.encode("5.64", "UTF-8"),URLEncoder.encode("2fa_supported", "UTF-8")} );
@@ -29,6 +30,9 @@ public class Net{
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
             b.append(reader.readLine());
+            if(MODE == 0){
+                System.out.println(b.toString());
+            }else if(MODE == 1){
             String input = b.toString();
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(input);
@@ -48,7 +52,9 @@ public class Net{
                     System.out.println("There is not url for: " + element.get("artist"));
                 }
             }
+            }
         }catch(Exception e){e.printStackTrace();}
+        
     }
     public static void downloadFile(String _url, String _name) {
         try {

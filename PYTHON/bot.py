@@ -3,8 +3,8 @@
 import urllib, os, errno, urllib2, json
 import subprocess
 import traceback
-headers = { 'User-Agent' : 'VKAndroidApp/4.13.1-1206 (Android 5.1.1; SDK 22; armeabi-v7a; samsung GT-I9300; uk)' }
-req = urllib2.Request('https://api.vk.com/method/audio.get?access_token=b3616c1b7838834211ab23268152fb7c587ada64a9a7b6eb7f62fb10c7f003eb1917d5b05065583a627c1', None, headers)
+headers = { 'User-Agent' : 'ТУТ_ВАШ_ЮЗЕР_АГЕНТ' }
+req = urllib2.Request('https://api.vk.com/method/audio.get?access_token=ТУТ_ВАШ_ТОКЕН', None, headers)
 html = urllib2.urlopen(req).read()
 file = open('out.json','w') 
 file.write(str(html)) 
