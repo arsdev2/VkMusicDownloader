@@ -19,8 +19,14 @@ public class Net{
         try{
             String ad = String.format(Locale.US, "https://oauth.vk.com/token?%s=password&%s=2274003&%s=hHbZxrka2uZ6jB1inYsH&username="+USERNAME+"&password="+PASSWORD + "&v=%s&%s=1", new Object[]{URLEncoder.encode("grant_type", "UTF-8"),URLEncoder.encode("client_id", "UTF-8"), URLEncoder.encode("client_secret", "UTF-8") ,URLEncoder.encode("5.64", "UTF-8"),URLEncoder.encode("2fa_supported", "UTF-8")} );
             String audio =  String.format(Locale.US, "https://api.vk.com/method/audio.get?%s=%s", new Object[]{URLEncoder.encode("access_token", "UTF-8"),URLEncoder.encode(ACCESS_TOKEN, "UTF-8")} );
-            System.out.println(audio);
-            URL url = new URL(audio);
+            Url url;
+            if(MODE == 0){
+                System.out.println(ad);
+                url = new URL(ad);
+            }else if(MODE == 1){
+                System.out.println(audio);
+                url = new URL(audio);
+            }
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
